@@ -1,0 +1,21 @@
+{
+    "name": "arif/permission",
+    "description": "",
+    "authors": [
+        {
+            "name": "arif Limited",
+            "email": "business@arif.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {}
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Permission\\": ""
+        }
+    }
+}

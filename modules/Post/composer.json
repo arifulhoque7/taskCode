@@ -1,0 +1,23 @@
+{
+    "name": "Arif/post",
+    "description": "",
+    "authors": [
+        {
+            "name": "Arif",
+            "email": "business@s.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Post\\": ""
+        }
+    }
+}
