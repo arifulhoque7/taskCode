@@ -23,4 +23,6 @@ Route::prefix('posts')->as('posts.')->middleware(['auth'])->group(function ()
     Route::put('/update', [PostController::class, 'update'])->name('update');
     Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
     Route::post('{post}/publish-status-update', [PostController::class, 'publishStatusUpdate'])->name('publish-status-update');
+
+    Route::post('/change-membership', [PostController::class, 'membershipStatusChange'])->name('change-membership');
 });

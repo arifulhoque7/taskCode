@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-bunker">
     <div class="sidebar-header">
         <a href="{{setting('site.url','javascript:void(0);')}}" class="sidebar-brand">
-            <img src="{{ setting('site.logo_light',admin_asset('img/logo-light.png'),true)}}">
+            <img src="">
         </a>
     </div>
 

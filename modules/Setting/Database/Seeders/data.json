@@ -160,7 +160,7 @@
         "group": "Site",
         "key": "site.header_tagline",
         "display_name": "Site Header Tag Line",
-        "value": "<p>Welcome to <span class=\"fw-bold\">Aiguru Dashboard<\/span><\/p><p>Empowering your knowledge with <b>AI Guru.<\/b><\/p> <p>Discover the potential of AI with <b>AI Guru.<\/b><\/p> <p>Unlock the power of AI with <b>AI Guru.<\/b><\/p> <p>Your guide to mastering AI - <b>AI Guru.<\/b><\/p> <p> Experience the future of learning with <b>AI Guru.<\/b><\/p> <p>Transform your skills with <b>AI Guru.<\/b><\/p> <p>Empower your career with <b>AI Guru.<\/b><\/p> <p>Learn the skills of tomorrow with <b>AI Guru.<\/b><\/p> <p>Your personal AI tutor - <b>AI Guru.<\/b><\/p> <p>AI made easy with <b>AI Guru.<\/b><\/p>",
+        "value": "<p>Welcome to <span class=\"fw-bold\">Dashboard<\/span><\/p>",
         "type": "code_editor",
         "details": "{\"theme\": \"dark\", \"language\": \"html\"}",
         "note": null,

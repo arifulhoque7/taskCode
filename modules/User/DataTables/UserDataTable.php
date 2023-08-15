@@ -32,15 +32,20 @@ class UserDataTable extends DataTable
             {
                 return $this->membershipBtn($query);
             })
-            ->editColumn('membership', function ($query)
+            ->editColumn('notification', function ($query)
             {
-                return $this->membershipBtn($query);
+                if($query->membership_notification == 1)
+                    if($query->membership == 0)
+                        return '<span class="badge badge-secondary-soft">'.__('Upgrade to Pro').'</span>';
+                    else
+                        return '<span class="badge badge-secondary-soft">'.__('Switch to free').'</span>';
+
             })
             ->addColumn('action', function ($query)
             {
                 return $query->actionBtn('user-table');
             })
-            ->rawColumns(['status', 'action', 'membership'])
+            ->rawColumns(['status', 'action', 'membership', 'notification'])
             ->setRowId('id')
             ->addIndexColumn();
     }
@@ -130,7 +135,7 @@ class UserDataTable extends DataTable
     private function membershipBtn($user) : string
     {
         $status = '<select class="form-control" name="status" id="mem_status_id_' . $user->id . '" ';
-        $status .= 'onchange="userMembershipStatusUpdate(\'' . route(config('theme.rprefix') . '.membership-status-update', $user->id) . '\',' . $user->id . ',\'' . $user->membership . '\')">';
+        $status .= 'onchange="userMembershipStatusUpdate(\'' . route(config('theme.rprefix') . '.membership-status-update', $user->id) . '\',' . $user->id . ',\'' . $user->membership . '\',\'#user-table\')">';
         foreach (User::membershipStatusList() as $key => $value) {
             $status .= "<option value='$key' " . selected($key, $user->membership) . ">$value</option>";
         }

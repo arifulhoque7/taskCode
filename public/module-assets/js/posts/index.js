@@ -87,7 +87,6 @@ function store(form) {
  */
 function update(form) {
     var data = form.serialize();
-    console.log($("#page-axios-data").data("update"));
     axios
         .put($("#page-axios-data").data("update"), data)
         .then(function (response) {

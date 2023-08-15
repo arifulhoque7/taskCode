@@ -3,6 +3,7 @@
 namespace Modules\Post\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Modules\Post\Entities\Post;
 use Illuminate\Routing\Controller;
@@ -169,5 +170,16 @@ class PostController extends Controller
         $post->update(['is_published' => $request->is_published]);
 
         return \response()->success($post, 'Post Status Updated Successfully.', 200);
+    }
+
+    public function membershipStatusChange()
+    {
+        $user = User::find(auth()->user()->id);
+
+        
+        $user->update(['membership_notification' => 1]);
+        
+
+        return response()->success($user, 'Request sent successfully.', 200);
     }
 }

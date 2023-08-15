@@ -3,7 +3,7 @@
         <div class="form-wrapper p-0 m-auto">
             <div class="form-container my-4">
                 <div class="register-logo text-center mb-4">
-                    <img src="{{ setting('site.logo_black',admin_asset('img/logo.png'),true) }}">
+                    <img src="">
                 </div>
                 <div>
                     {{ $slot }}

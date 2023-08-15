@@ -80,7 +80,7 @@ class UserController extends Controller
 
             $data['profile_photo_path'] = $request->avatar->store('users');
         }
-        
+
         $data['password'] = Hash::make($request->password);
         $user = User::create($data)->assignRole($data['role']);
 
@@ -134,8 +134,7 @@ class UserController extends Controller
                 'password' => ['required', 'string', new Password(), 'confirmed'],
             ]);
             $data['password'] = Hash::make($request->password);
-        }
-        else {
+        } else {
             unset($data['password']);
         }
         if ($request->hasFile('avatar')) {
@@ -153,8 +152,7 @@ class UserController extends Controller
             if (\array_key_exists('permissions', $data) && \is_array($data['permissions'])) {
                 $user->syncPermissions($data['permissions']);
             }
-        }
-        else {
+        } else {
             $user->status = 'Active';
             $user->save();
             Session::flash('error', 'You Can\'t Updated Your User Account Status Or Role.');
@@ -213,7 +211,10 @@ class UserController extends Controller
         if (\auth()->user()->id == $user->id) {
             return \response()->error([], 'You can\'t update your account status.', 403);
         }
-        $user->update(['membership' => $request->membership]);
+        $user->update([
+            'membership' => $request->membership,
+            'membership_notification' => 0
+        ]);
 
         return \response()->success($user, 'User Status Updated Successfully.', 200);
     }

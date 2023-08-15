@@ -18,10 +18,12 @@ function userStatusUpdate(t, s, a) {
         });
 }
 
-function userMembershipStatusUpdate(t, s, a) {
+function userMembershipStatusUpdate(t, s, a,id) {
     axios
         .post(t, { membership: $("#mem_status_id_" + s).val() })
         .then((t) => {
+            var table = $(id);
+            table.DataTable().ajax.reload();
             if (t.data.message) {
                 toastr.success(t.data.message, "Success");
             } else {

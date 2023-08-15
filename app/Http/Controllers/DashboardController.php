@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Modules\Document\DataTables\DocumentDataTable;
+use Modules\Post\Entities\Post;
 use Modules\Template\Entities\Template;
+use Modules\Document\DataTables\DocumentDataTable;
 use Modules\TemplateCategory\Entities\TemplateCategory;
 
 class DashboardController extends Controller
@@ -31,10 +32,11 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function index(Request $request, )
+    public function index(Request $request)
     {
+        $checkFreeUser = Post::isFreeMembership();
 
-        return view('dashboard');
+        return view('dashboard', compact('checkFreeUser'));
     }
 
     public function redirectToDashboard()
