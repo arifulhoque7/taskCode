@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Post extends Model
 {
     use HasFactory;
+    protected static $cacheKey = '__posts__';
     protected $fillable = [
         'title',
         'description',

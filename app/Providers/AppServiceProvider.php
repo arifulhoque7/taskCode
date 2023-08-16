@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Providers;
-use Illuminate\Database\Schema\Blueprint;
 use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Database\Schema\Blueprint;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
         config('app.timezone', 'Asia/Dhaka');
 
         Fortify::ignoreRoutes();
+        Paginator::useBootstrap();
 
         Schema::defaultStringLength(120);
 

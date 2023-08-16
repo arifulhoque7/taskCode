@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArtisanHttpController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [DashboardController::class, 'redirectToDashboard'])->name('home');
+Route::get('/frontend', [FrontEndController::class, 'index'])->name('frontend.home');
 Route::get('/admin', [DashboardController::class, 'redirectToDashboard']);
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/dashboard/get-word-count', [DashboardController::class, 'getWordCount'])->name('admin.dashboard.get-word-count');
