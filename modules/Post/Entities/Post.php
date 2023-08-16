@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Notifications\PostPublishedNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
@@ -30,6 +31,11 @@ class Post extends Model
                 self::created(function ($model) {
                     $model->is_published = 1;
                     $model->save();
+                    //send post published notification to admin
+                    $admins = User::role('Administrator')->get();
+                    foreach ($admins as $admin) {
+                        $admin->notify(new PostPublishedNotification($model));
+                    }
                 });
             }
         }

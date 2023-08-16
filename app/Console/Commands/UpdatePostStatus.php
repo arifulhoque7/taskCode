@@ -3,15 +3,17 @@
 namespace App\Console\Commands;
 
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Console\Command;
 use Modules\Post\Entities\Post;
+use App\Notifications\PostPublishedNotification;
 
 class UpdatePostStatus extends Command
 {
 
     protected $signature = 'posts:update-status';
     protected $description = 'Update post statuses based on publish time';
-   
+
     public function handle()
     {
         $currentTime = Carbon::now()->second(0);
@@ -24,6 +26,10 @@ class UpdatePostStatus extends Command
             $postUpdated = Post::find($post->id);
             $postUpdated->is_published = 1;
             $postUpdated->save();
+            $admins = User::role('Administrator')->get();
+            foreach ($admins as $admin) {
+                $admin->notify(new PostPublishedNotification($post));
+            }
         }
 
         $this->info('Post statuses updated.');

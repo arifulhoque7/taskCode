@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-card>
         <x-slot name='actions'>
-      
-            @if ($checkPostCount != 2 )
+            <input type="hidden" value="{{ $checkFreeUser }}" id="checkFreeUser">
+            @if ($checkPostCount < 2 )
             <a href="javascript:void(0);" class="btn btn-success btn-sm btn-create" onclick="showCreateModal()"><i
                     class="fa fa-plus-circle"></i>&nbsp;{{ __('Add Post') }}</a>
             @endif

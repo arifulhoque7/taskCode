@@ -10,6 +10,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Modules\Post\DataTables\PostDataTable;
 use Illuminate\Contracts\Support\Renderable;
+use App\Notifications\PostPublishedNotification;
 
 class PostController extends Controller
 {
@@ -168,6 +169,13 @@ class PostController extends Controller
             return \response()->error([], 'You can\'t update this status.', 403);
         }
         $post->update(['is_published' => $request->is_published]);
+
+        if($request->is_published == 1){
+            $admins = User::role('Administrator')->get();
+            foreach ($admins as $admin) {
+                $admin->notify(new PostPublishedNotification($post));
+            }
+        }
 
         return \response()->success($post, 'Post Status Updated Successfully.', 200);
     }
