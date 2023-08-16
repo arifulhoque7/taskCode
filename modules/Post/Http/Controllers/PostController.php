@@ -42,6 +42,7 @@ class PostController extends Controller
      */
     public function index(PostDataTable $dataTable)
     { 
+        // dd();
         
         $checkFreeUser = Post::isFreeMembership();
         if($checkFreeUser){

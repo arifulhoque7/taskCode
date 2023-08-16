@@ -60,7 +60,14 @@ class PostDataTable extends DataTable
      */
     public function query(Post $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()
+        ->when(\auth()->user()->id, function ($q) {
+            if(\auth()->user()->hasRole('Administrator')){
+                return $q;
+            }else{
+                return $q->where('user_id', \auth()->user()->id);
+            }
+        });
     }
 
     /**
